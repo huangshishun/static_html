@@ -10,14 +10,23 @@
 <body>
   <div>
     <div>
-      <span>公司名称</span><input id="enterpriseName" name="enterpriseName" value="" type="text">
+      <div class="point-t">
+        <span>会议名称：</span><input id="meetingName" name="meetingName" value="" type="text" disabled>
+      </div>
+      <div class="point-t">
+        <span>会议地址：</span><input id="meetingAddress" name="meetingAddress" value="" type="text" disabled>
+      </div>
+      <div class="point-t">
+        <span>公司名称：</span><input id="enterpriseName" name="enterpriseName" value="" type="text">
+      </div>
+      <div class="point-t">
+        <span>人员姓名：</span><input id="participant" name="participant" value="" type="text">
+      </div>
     </div>
-    <div>
-      <span>人员姓名</span><input id="participant" name="participant" value="" type="text">
+    
+    <div class="point-t">
+      <button onclick="submit()" class="point-but">提交</button>
     </div>
-  </div>
-  <div>
-    <button onclick="submit()">提交</button>
   </div>
   <script type="text/javascript">
     function submit(){
@@ -25,6 +34,9 @@
       let enterpriseName=$("#enterpriseName").val()
       let participant=$("#participant").val()
       console.log(enterpriseName);
+      if(!enterpriseName){
+
+      }
       axios.get('https://autumnfish.cn/api/joke/list?num=6').then(res=>{
         console.log(res);
       })
@@ -33,5 +45,19 @@
       })
     }
   </script>
+  <style>
+    .point-t{
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .point-but{
+      width: 200px;
+      height: 30px;
+      background-color: #2196f3;
+      border: 0;
+      border-radius: 10px;
+    }
+  </style>
 </body>
 </html>
