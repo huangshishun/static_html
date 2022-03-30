@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>人员登记</title>
+</head>
+<body>
+  <div>
+    <div>
+      <span>公司名称</span><input id="enterpriseName" name="enterpriseName" value="" type="text">
+    </div>
+    <div>
+      <span>人员姓名</span><input id="participant" name="participant" value="" type="text">
+    </div>
+  </div>
+  <div>
+    <button onclick="submit()">提交</button>
+  </div>
+  <script type="text/javascript">
+    function submit(){
+      console.log(11111111);
+      let enterpriseName=$("#enterpriseName").val()
+      let participant=$("#participant").val()
+      console.log(enterpriseName);
+      axios.get('https://autumnfish.cn/api/joke/list?num=6').then(res=>{
+        console.log(res);
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+    }
+  </script>
+</body>
+</html>
