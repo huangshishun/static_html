@@ -5,30 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.js"></script>
   <title>人员登记</title>
 </head>
 <body>
   <div>
     <div>
       <div class="point-t">
-        <span>会议名称：</span><input id="meetingName" name="meetingName" value="" type="text" disabled>
+        <span>会议名称：</span><input id="meetingName" name="meetingName" value="" type="text" disabled style="width: 50%;">
       </div>
       <div class="point-t">
-        <span>会议地址：</span><input id="meetingAddress" name="meetingAddress" value="" type="text" disabled>
+        <span>会议地址：</span><input id="meetingAddress" name="meetingAddress" value="" type="text" disabled style="width: 50%;">
       </div>
       <div class="point-t">
-        <span>公司名称：</span><input id="enterpriseName" name="enterpriseName" value="" type="text">
+        <span>公司名称：</span>
+        <select id="enterpriseName" style="width: 50%;">
+          <!-- <option value="1">广州</option>
+          <option value="2">深圳</option>
+          <option value="3">山东</option>
+          <option value="4">北京</option> -->
+        </select>
       </div>
       <div class="point-t">
-        <span>人员姓名：</span><input id="participant" name="participant" value="" type="text">
+        <span>人员姓名：</span><input id="participant" name="participant" value="" type="text" style="width: 50%;">
       </div>
     </div>
-    
+
     <div class="point-t">
       <button onclick="submit()" class="point-but">提交</button>
     </div>
   </div>
   <script type="text/javascript">
+    function getQuery(){
+      // const router=new VueRouter()
+      // console.log(router,$route,11111111);
+      let url=window.location.href
+      let query=url.split('?')[1]
+      console.log(query,11111);
+      let queryList=query.split('&')
+      console.log(queryList,2222);
+      let obj={}
+      if(queryList.length>0){
+        for(var i=0;i<queryList.length;i++){
+          let str=queryList[i]
+          let strList=str.split('=')
+          obj[strList[0]]=decodeURI(strList[1])
+        }
+      }
+      obj.list=obj.list.split(',')
+      console.log(obj,99999);
+
+      $('#enterpriseName').empty();//清空select，不然每点一次都循环添加一遍数据越来越多
+			for (var i=0;i<obj.list.length;i++) {
+				$('#enterpriseName').append('<option id="'+i+'">'+obj.list[i]+'</option>')
+			}
+
+      $("#meetingName").val(obj.meetingName)
+      $("#meetingAddress").val(obj.meetingAddress)
+    }
+    getQuery()
     function submit(){
       console.log(11111111);
       let enterpriseName=$("#enterpriseName").val()
