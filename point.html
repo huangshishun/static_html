@@ -70,7 +70,17 @@
       if(enterpriseName && participant){
         $('#err').hide()
         $('#infoUrl').text(obj.url+'?id='+obj.id+'&enterpriseName='+enterpriseName+'&participant='+participant)
-        axios.get("1"+obj.url+'?id='+obj.id+'&enterpriseName='+enterpriseName+'&participant='+participant).then(res=>{
+
+        // axios.get(obj.url+'?id='+obj.id+'&enterpriseName='+enterpriseName+'&participant='+participant).then(res=>{
+        axios({
+          method:'get',
+          url:obj.url,
+          params:{
+            id:obj.id,
+            enterpriseName:enterpriseName,
+            participant:participant
+          }
+        }).then(res=>{
           console.log(res);
           $('#info').text(res.data.msg)
         })
