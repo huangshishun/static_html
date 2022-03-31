@@ -27,11 +27,16 @@
       <div class="point-t" id="err">
         <span style="color:red;font-size:14px;">公司名称和参会人员姓名不能为空！！！</span>
       </div>
+      <div>
+        <span id="info"></span>
+      </div>
+      <div>
+        <span id="infoUrl"></span>
+      </div>
     </div>
 
     <div class="point-t">
-      <!-- <input type="button" value="提交" onTap="submit()" class="point-but"> -->
-      <button onTap="submit()" class="point-but">提交</button>
+      <button onclick="submit()" class="point-but">提交</button>
     </div>
   </div>
   <script type="text/javascript">
@@ -60,16 +65,17 @@
     }
     getQuery()
     function submit(){
-      console.log(1111111);
       let enterpriseName=$("#enterpriseName").val()
       let participant=$("#participant").val()
       if(enterpriseName && participant){
         $('#err').hide()
-        axios.get(obj.url+'?id='+obj.id+'&enterpriseName='+enterpriseName+'&participant='+participant).then(res=>{
+        $('#infoUrl').text(obj.url+'?id='+obj.id+'&enterpriseName='+enterpriseName+'&participant='+participant)
+        axios.get("1"+obj.url+'?id='+obj.id+'&enterpriseName='+enterpriseName+'&participant='+participant).then(res=>{
           console.log(res);
+          $('#info').text(res.data.msg)
         })
         .catch(error=>{
-          console.log(error);
+          $('#info').text(error)
         })
       }else{
         $('#err').show()
