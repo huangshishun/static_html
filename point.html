@@ -67,7 +67,7 @@
     function submit(){
       let enterpriseName=$("#enterpriseName").val()
       let participant=$("#participant").val()
-      if(enterpriseName && participant){
+      // if(enterpriseName && participant){
         $('#err').hide()
         $('#infoUrl').text(obj.url+'?id='+obj.id+'&enterpriseName='+enterpriseName+'&participant='+participant)
 
@@ -79,6 +79,9 @@
             id:obj.id,
             enterpriseName:enterpriseName,
             participant:participant
+          },
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
         }).then(res=>{
           console.log(res);
@@ -87,9 +90,9 @@
         .catch(error=>{
           $('#info').text(error)
         })
-      }else{
-        $('#err').show()
-      }
+      // }else{
+      //   $('#err').show()
+      // }
     }
   </script>
   <style>
